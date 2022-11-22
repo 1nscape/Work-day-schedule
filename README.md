@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # 05 Third-Party APIs: Work Day Scheduler
 
 ## Your Task
@@ -97,3 +98,6 @@ You are required to submit the following for review:
 
 - - -
 © 2022 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+=======
+# Work-day-schedule
+>>>>>>> 6bd6d36f9be59ffde6a5d47a36436d21af863670
