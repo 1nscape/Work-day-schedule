@@ -2,39 +2,45 @@
 // the code isn't run until the browser has finished rendering all the elements
 // in the html.
 
- var today = dayjs();
+var today = dayjs();
 $('#specificdate').text(today.format('dddd, MMM YYYY'));
 
-$('.saveBtn').on('click', function(){
-  var textInput = $('.description').val();
-
-  localStorage.setItem('text', textInput);
-
+$('.saveBtn').on('click', function () {
+  var sibling = $(this).prev().val();
+  console.log(sibling)
+  var parent = $(this).parent().attr('id');
+  
+  localStorage.setItem(parent, sibling);
+  
 })
 
 function timeNow() {
   var blockTime = $('.hour')
   console.log(blockTime);
-  var currentTime = dayjs(); 
-  console.log(currentTime);
+  var currentTime = dayjs();
+  console.log(currentTime.$H);
 
-  if (blockTime < currentTime) {
-    $(this).removeClass('future');
-    $(this).removeClass('present');
-    $(this).addClass('past')
-  }
-
-  else if (blockTime === currentTime) {
-    $(this).removeClass('future');
-    $(this).removeClass('past');
-    $(this).addClass('present');
+  for (let index = 0; index < blockTime.length; index++) {
+    if (blockTime[index].dataset.hour < currentTime.$H) {
+      $(blockTime[index]).parent().removeClass('future');
+      $(blockTime[index]).parent().removeClass('present');
+      $(blockTime[index]).parent().addClass('past');
+    }
+  
+    else if (blockTime[index].dataset.hour == currentTime.$H) {
+      $(blockTime[index]).parent().removeClass('future');
+      $(blockTime[index]).parent().removeClass('past');
+      $(blockTime[index]).parent().addClass('present');
+    }
+  
+    else {
+      $(blockTime[index]).parent().removeClass('past');
+      $(blockTime[index]).parent().removeClass('present');
+      $(blockTime[index]).parent().addClass('future');
+    }
+    
   }
   
-  else {
-    $(this).removeClass('past');
-    $(this).removeClass('present');
-    $(this).addClass('future');
-}
 }
 timeNow();
 
